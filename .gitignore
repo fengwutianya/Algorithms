@@ -1,0 +1,6 @@
+.idea/
+lib/
+*.class
+*.jar
+*.iml
+src/test/
