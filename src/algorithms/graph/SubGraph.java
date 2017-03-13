@@ -9,7 +9,15 @@ public class SubGraph {
     private int count;
 
     public SubGraph(Graph graph) {
-
+        marked = new boolean[graph.getVertexNum()];
+        id = new int[graph.getVertexNum()];
+        count = 0;
+        for (int i = 0; i < graph.getVertexNum(); i++) {
+            if (!marked[i]) {
+                dfs(graph, i);
+                count++;
+            }
+        }
     }
 
     private void dfs(Graph graph, int start) {
@@ -20,5 +28,17 @@ public class SubGraph {
                 dfs(graph, w);
             }
         }
+    }
+
+    public int getId(int vertex) {
+        return id[vertex];
+    }
+
+    public boolean connected(int from, int to) {
+        return id[from] == id[to];
+    }
+
+    public int getCount() {
+        return count;
     }
 }
