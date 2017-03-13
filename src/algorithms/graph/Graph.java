@@ -16,7 +16,7 @@ public class Graph {
 
     public Graph(int V) {
         this.V = V;
-        adj = (Bag<Integer>[])new Bag[10];
+        adj = (Bag<Integer>[])new Bag[V];
         for (int i = 0; i < V; i++) {
             adj[i] = new Bag<Integer>();
         }
@@ -24,12 +24,19 @@ public class Graph {
 
     public Graph(In in) {
         this(in.readInt());
-        E = in.readInt();
-        for (int i = 0; i < E; i++) {
+        int edge = in.readInt();
+//        System.out.println(E);
+        for (int i = 0; i < edge; i++) {
+//            System.out.println(i);
             int v = in.readInt();
+//            System.out.println(v);
             int w = in.readInt();
+//            System.out.println(w);
             addEdge(v, w);
         }
+//        while (in.hasNextLine()) {
+//            System.out.println(in.readLine());
+//        }
     }
 
     private void addEdge(int v, int w) {

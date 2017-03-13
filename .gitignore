@@ -3,4 +3,9 @@ lib/
 *.class
 *.jar
 *.iml
+*.zip
+*.txt
+*.bin
+*.csv
 src/test/
+edu/

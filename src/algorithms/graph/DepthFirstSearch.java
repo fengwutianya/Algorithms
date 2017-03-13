@@ -9,6 +9,7 @@ public class DepthFirstSearch {
 
     public DepthFirstSearch(Graph g, int s) {
         marked = new boolean[g.V()];
+//        System.out.println(s);
         dfs(g, s);
     }
 

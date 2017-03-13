@@ -51,7 +51,7 @@ public class Bag<Item> implements Iterable<Item> {
 
         @Override
         public Item next() {
-            if (hasNext()) throw new NoSuchElementException();
+            if (!hasNext()) throw new NoSuchElementException();
             Item item = current.item;
             current = current.next;
             return item;
