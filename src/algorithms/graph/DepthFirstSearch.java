@@ -7,17 +7,16 @@ public class DepthFirstSearch {
     private boolean[] marked;
     private int count;
 
-    public DepthFirstSearch(Graph g, int s) {
-        marked = new boolean[g.V()];
-//        System.out.println(s);
-        dfs(g, s);
+    public DepthFirstSearch(Graph graph, int start) {
+        marked = new boolean[graph.getVertexNum()];
+        dfs(graph, start);
     }
 
-    private void dfs(Graph g, int v) {
-        marked[v] = true;
+    private void dfs(Graph graph, int start) {
+        marked[start] = true;
         count++;
-        for (int w: g.adj(v)) {
-            if (!marked[w]) dfs(g, w);
+        for (int w: graph.getAdj(start)) {
+            if (!marked[w]) dfs(graph, w);
         }
     }
 

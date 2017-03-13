@@ -9,24 +9,24 @@ import edu.princeton.cs.algs4.Stack;
 public class BreadthFirstPaths {
     private boolean[] marked;   //记录着当前结点是否已经被访问了
     private int[] edgeTo;   //广度优先遍历，结果为生成树，edgeTo记录着当前结点的父节点是谁
-    private final int s;    //以此节点为根节点，接着访问生成树的子树
+    private final int start;    //以此节点为根节点，接着访问生成树的子树
 
-    public BreadthFirstPaths(Graph g, int s) {
-        this.s = s;
-        marked = new boolean[g.V()];
-        edgeTo = new int[g.V()];
-        bfs(g, s);
+    public BreadthFirstPaths(Graph graph, int start) {
+        this.start = start;
+        marked = new boolean[graph.getVertexNum()];
+        edgeTo = new int[graph.getVertexNum()];
+        bfs(graph, start);
     }
 
-    private void bfs(Graph g, int v) {
+    private void bfs(Graph graph, int start) {
         Queue<Integer> queue = new Queue<>();
-        marked[v] = true;
-        queue.enqueue(v);
+        marked[start] = true;
+        queue.enqueue(start);
         while (!queue.isEmpty()) {
             int node = queue.dequeue();
-            for (int w: g.adj(node)) {
+            for (int w: graph.getAdj(node)) {
                 if (!marked[w]) {
-                    edgeTo[w] = v;
+                    edgeTo[w] = node;
                     marked[w] = true;
                     queue.enqueue(w);
                 }
@@ -34,17 +34,17 @@ public class BreadthFirstPaths {
         }
     }
 
-    public boolean hasPathTo(int v) {
-        return marked[v];
+    public boolean hasPathTo(int currentPoint) {
+        return marked[currentPoint];
     }
 
-    public Stack<Integer> pathTo(int v) {
-        if (!hasPathTo(v)) return null; //这句落下了，没路找个大头鬼啊
+    public Stack<Integer> pathTo(int currentPoint) {
+        if (!hasPathTo(currentPoint)) return null; //这句落下了，没路找个大头鬼啊
         Stack<Integer> stack = new Stack<>();
-        for (int w = v; w != s; w = edgeTo[w]) {
+        for (int w = currentPoint; w != start; w = edgeTo[w]) {
             stack.push(w);
         }
-        stack.push(s);  //这句也落下了，完整的路径要有起点
+        stack.push(start);  //这句也落下了，完整的路径要有起点
         return stack;
     }
 }

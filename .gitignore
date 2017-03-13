@@ -7,5 +7,6 @@ lib/
 *.txt
 *.bin
 *.csv
-src/test/
 edu/
+*.html
+out/

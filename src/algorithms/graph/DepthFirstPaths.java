@@ -1,6 +1,7 @@
 package algorithms.graph;
 
-import java.util.Stack;
+
+import edu.princeton.cs.algs4.Stack;
 
 /**
  * Created by xuan on 2017/3/10 0010.
@@ -8,36 +9,36 @@ import java.util.Stack;
 public class DepthFirstPaths {
     private boolean[] marked;
     private int[] edgeTo;
-    private final int s;
+    private final int start;
 
-    public DepthFirstPaths(Graph g, int s) {
-        marked = new boolean[g.V()];
-        edgeTo = new int[g.V()];
-        this.s = s;
-        dfs(g, s);
+    public DepthFirstPaths(Graph graph, int start) {
+        marked = new boolean[graph.getVertexNum()];
+        edgeTo = new int[graph.getVertexNum()];
+        this.start = start;
+        dfs(graph, start);
     }
 
-    private void dfs(Graph g, int v) {
-        marked[v] = true;
-        for (int w: g.adj(v)) {
+    private void dfs(Graph graph, int start) {
+        marked[start] = true;
+        for (int w: graph.getAdj(start)) {
             if (!marked[w]) {
-                edgeTo[w] = v;
-                dfs(g, w);
+                edgeTo[w] = start;
+                dfs(graph, w);
             }
         }
     }
 
-    public boolean hasPathTo(int v) {
-        return marked[v];
+    public boolean hasPathTo(int currentPoint) {
+        return marked[currentPoint];
     }
 
-    public Iterable<Integer> pathTo(int v) {
-        if (!hasPathTo(v)) return null;
+    public Stack<Integer> pathTo(int currentPoint) {
+        if (!hasPathTo(currentPoint)) return null;
         Stack<Integer> path = new Stack<>();
-        for (int x = v; x != s; x = edgeTo[x]) {
+        for (int x = currentPoint; x != start; x = edgeTo[x]) {
             path.push(x);
         }
-        path.push(s);
+        path.push(start);
         return path;
     }
 }
