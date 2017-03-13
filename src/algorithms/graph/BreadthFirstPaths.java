@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.Stack;
  * Created by xuan on 2017/3/10 0010.
  */
 public class BreadthFirstPaths {
-    private boolean[] marked;   //记录着当前结点是否已经被访问了
+    private boolean[] marked;   //记录着当前结点是否connected to start
     private int[] edgeTo;   //广度优先遍历，结果为生成树，edgeTo记录着当前结点的父节点是谁
     private final int start;    //以此节点为根节点，接着访问生成树的子树
 

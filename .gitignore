@@ -7,6 +7,5 @@ lib/
 *.txt
 *.bin
 *.csv
-edu/
 *.html
 out/
