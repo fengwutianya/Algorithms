@@ -1,37 +1,38 @@
 package algorithms.graph;
 
 /**
- * Created by xuan on 2017/3/13 0013.
+ * Created by xuan on 17-3-13.
  */
 public class TwoColor {
     private boolean[] marked;
     private boolean[] color;
-    private boolean isTwoColor;
+
+    public boolean isTwoColor() {
+        return isTwoColor;
+    }
+
+    private boolean isTwoColor = true;
 
     public TwoColor(Graph graph) {
-        isTwoColor = true;
-        int vertexNumber = graph.getVertexNum();
-        marked = new boolean[vertexNumber];
-        color = new boolean[vertexNumber];
-        for (int i = 0; i < vertexNumber; i++) {
+        int vertexNum = graph.getVertexNum();
+        marked = new boolean[vertexNum];
+        color = new boolean[vertexNum];
+
+        for (int i = 0; i < vertexNum; i++) {
             if (!marked[i]) {
                 dfs(graph, i);
             }
         }
     }
 
-    private void dfs(Graph graph, int whoVisistedMe) {
-        marked[whoVisistedMe] = true;
-        for (int w: graph.getAdj(whoVisistedMe)) {
+    private void dfs(Graph graph, int start) {
+        marked[start] = true;
+        for (int w: graph.getAdj(start)) {
             if (!marked[w]) {
+                color[w] = !color[start];
                 dfs(graph, w);
-                color[w] = !color[whoVisistedMe];
-            }
-            else if (color[w] == color[whoVisistedMe]) isTwoColor = false;
+            } else if (color[w] == color[start])
+                isTwoColor = false;
         }
-    }
-
-    public boolean isTwoColor() {
-        return isTwoColor;
     }
 }
