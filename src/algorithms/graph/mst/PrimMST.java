@@ -45,7 +45,7 @@ public class PrimMST {
         }
     }
 
-    public Iterable<Edge> edges() {
+    public Iterable<Edge> getEdges() {
         Bag<Edge> list = new Bag<>();
         for (int i = 0; i < edgeMinToTree.length; i++) {
             if (edgeMinToTree[i] != null)
@@ -57,7 +57,7 @@ public class PrimMST {
 
     public double getWeight() {
         double weight = 0.0D;
-        for (Edge edge: edges()) {
+        for (Edge edge: getEdges()) {
             weight += edge.getWeight();
         }
 

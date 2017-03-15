@@ -1,8 +1,6 @@
 package test.graph.mst;
 
-import algorithms.graph.mst.Edge;
-import algorithms.graph.mst.EdgeWeightedGraph;
-import algorithms.graph.mst.LazyPrimMST;
+import algorithms.graph.mst.*;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 
@@ -12,11 +10,13 @@ import edu.princeton.cs.algs4.StdOut;
 public class TestMST {
     public static void main(String[] args) {
         EdgeWeightedGraph graph = new EdgeWeightedGraph(new In(args[0]));
-        LazyPrimMST mst = new LazyPrimMST(graph);
+//        LazyPrimMST mst = new LazyPrimMST(graph);
+//        PrimMST mst = new PrimMST(graph);
+        KruskalMST mst = new KruskalMST(graph);
         for (Edge edge: mst.getEdges()) {
             System.out.println(edge);
         }
-        System.out.println(mst.weight());
+        System.out.println(mst.getWeight());
 
     }
 }
