@@ -55,4 +55,12 @@ public class EdgeWeightedGraph {
         }
         return edges;
     }
+
+    public int getVertexNum() {
+        return vertexNum;
+    }
+
+    public int getEdgeNum() {
+        return edgeNum;
+    }
 }
