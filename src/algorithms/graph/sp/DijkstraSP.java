@@ -15,9 +15,11 @@ public class DijkstraSP {
         int vertexNum = digraph.getVertextNum();
         edgeTo = new DirectedEdge[vertexNum];
         distTo = new double[vertexNum];
+        pq = new IndexMinPQ<>(vertexNum);
         for (int i = 0; i < vertexNum; i++) {
             distTo[i] = Double.POSITIVE_INFINITY;
         }
+        distTo[s] = 0;
         pq.insert(s, 0.0);
         while (!pq.isEmpty())
             relax(digraph, pq.delMin());
