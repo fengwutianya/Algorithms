@@ -1,7 +1,6 @@
-package algorithms.graph;
+package algorithms.graph.sp;
 
-import algorithms.graph.sp.DirectedEdge;
-import algorithms.graph.sp.EdgeWeightedDigraph;
+import algorithms.graph.Topological;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Stack;
 
