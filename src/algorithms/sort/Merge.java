@@ -1,37 +1,37 @@
 package algorithms.sort;
 
 import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdRandom;
 
 /**
  * Created by xuan on 2017/3/20 0020.
  */
-public class Quick {
+public class Merge {
+    private static Comparable[] aux;
+
     public static void sort(Comparable[] a) {
-        //为了递归
-//        StdRandom.shuffle(a);
-        sort(a, 0, a.length-1);
+        if (a.length == 0) return;
+        aux = new Comparable[a.length];
+        sort(a, 0, a.length - 1);
     }
 
     private static void sort(Comparable[] a, int lo, int hi) {
-        if (hi <= lo) return ;
-        int j = partition(a, lo, hi);
-        sort(a, lo, j - 1);
-        sort(a, j+1, hi);
+        if (lo == hi) return;
+        int mid = (lo + hi) / 2;
+        sort(a, lo, mid);
+        sort(a, mid+1, hi);
+        merge(a, lo, mid, hi);
     }
 
-    private static int partition(Comparable[] a, int lo, int hi) {
-        Comparable right = a[lo];
+    private static void merge(Comparable[] a, int lo, int mid, int hi) {
+        System.arraycopy(a, lo, aux, lo, hi + 1 - lo);
         int i = lo;
-        int j = hi + 1;
-        while (true) {
-            while (less(a[++i], right)) if (i == hi) break;
-            while (less(right, a[--j])) if (j == lo) break;
-            if (i >= j) break;
-            exch(a, i, j);
+        int j = mid + 1;
+        for (int k = lo; k < hi + 1; k++) {
+            if (i > mid)                    a[k] = aux[j++];
+            else if (j > hi)                a[k] = aux[i++];
+            else if (less(aux[i], aux[j]))  a[k] = aux[i++];
+            else                            a[k] = aux[j++];
         }
-        exch(a, lo, j);
-        return j;
     }
 
     public static boolean less(Comparable a, Comparable b) {
