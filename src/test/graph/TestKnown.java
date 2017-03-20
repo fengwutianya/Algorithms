@@ -12,6 +12,9 @@ public class TestKnown {
 
     public static void main(String[] args) {
 //        System.out.println(1.0D/0);
-        System.out.println(new TestKnown().getI());
+//        System.out.println(new TestKnown().getI());
+        int[] a = new int[0];
+        System.out.println(a == null);
+        System.out.println(a.length);
     }
 }
