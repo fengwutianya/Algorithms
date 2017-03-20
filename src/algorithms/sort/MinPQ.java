@@ -81,7 +81,7 @@ public class MinPQ<Key> implements Iterator<Key> {
         return this.delMin();
     }
 
-    private Key delMin() {
+    public Key delMin() {
         if (!hasNext()) throw new NoSuchElementException("underflow");
         exch(1, len);
         Key min = pq[len--];
@@ -89,12 +89,26 @@ public class MinPQ<Key> implements Iterator<Key> {
         pq[len+1] = null;
 
         //resize
+        if (len > 0 && len == (pq.length - 1)/4) resize(pq.length/2);
 
         return min;
     }
 
+    public void insert(Key value) {
+        if (len == pq.length-1) resize(pq.length*2);
+        len++;
+        pq[len] = value;
+        swim(len);
+    }
+
+    private void resize(int capacity) {
+        Key[] newPQ = (Key[]) new Object[capacity];
+        System.arraycopy(pq, 1, newPQ, 1, len);
+        pq = newPQ;
+    }
+
     @Override
     public void remove() {
-
+        throw new UnsupportedOperationException("do not support remove");
     }
 }
